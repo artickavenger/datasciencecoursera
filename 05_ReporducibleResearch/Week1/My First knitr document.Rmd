@@ -1,0 +1,57 @@
+---
+title: "My First knitr Document"
+author: "me"
+date: "10/21/2020"
+output: html_document
+---
+
+## Introduction
+
+This is some text (i.e. a "text chunk").
+
+Here is a code chunk
+```{r simulation, echo=FALSE}
+set.seed(1)
+x <- rnorm(100)
+mean(x)
+```
+# Iniline Text Computations
+
+## Introduction
+```{r computetime,echo=FALSE}
+time <- format(Sys.time(), "%a %b %X %Y")
+rand <- rnorm(1)
+```
+
+The current time is `r time`. My favorite random number is `r rand`.
+
+# Incorporating Graphics
+
+## Introduction
+
+Let's first stiulate some data.
+```{r stimulatdata,echo=TRUE}
+x <- rnorm(100); y <- x + rnorm(100,sd=0.5)
+```
+Here is a scatterplot of the data.
+```{r scatterplot, fig.height=4}
+par(mar=c(5,4,1,1),las=1)
+plot(x,y,main = "My Stimulated Data")
+```
+
+# Making Tables with xtable
+
+## Introduction
+
+```{r fitmodel}
+library(datasets)
+data(airquality)
+fit <- lm(Ozone ~ Wind + Temp + Solar.R, data = airquality)
+```
+Here is a table of regression coefficients.
+```{r showtable,results="asis"}
+library(xtable)
+xt <- xtable(summary(fit))
+print(xt, type = "html")
+```
+

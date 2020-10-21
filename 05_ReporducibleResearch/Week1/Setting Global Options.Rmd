@@ -1,0 +1,23 @@
+---
+title: "Setting Global Options"
+author: "me"
+date: "10/21/2020"
+output: html_document
+---
+
+# Setting Global Options
+
+## Introduction
+
+```{r setopions,echo=FALSE}
+opts_chunk$set(echo=FALSE, results = "hide")
+```
+First stimulate data
+```{r simulatedata,echo=TRUE}
+x <- rnorm(100); y <- x + rnorm(100,sd=0.5)
+```
+Here is a scatterplot of the data
+```{r scatterplot,fig.height=4}
+par(mar=c(5,4,1,1),las=1)
+plot(x,y,main = "My Simulated Data")
+```
